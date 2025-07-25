@@ -1,18 +1,40 @@
 from textual.app import App
-from textual.widgets import Button, Header, Footer
+from textual.containers import ScrollableContainer
+from textual.widgets import Button, Header, Footer, Static
+
+class Word(Static):
+    """ Just a word """
+
+class Pair(Static):
+    """ Just something here """
+    
+    def compose(self):
+        yield Button("Button 1", variant="success")
+        yield Button("Button 2", variant="error")
+        yield Word("Part")
+
 
 class EndRunGame(App):
     BINDINGS = [
         ("d", "toggle_dark_mode", "Toggle dark mode"),
     ]
     
+    CSS = """
+    Pair{
+        layout: horizontal;
+    }
+    """
+
     def compose(self):
         """ The widgets that this app is composed of """
         
         yield Header(show_clock=True)
         yield Footer()
-        yield Button("Play")
-        yield Button("Quit")
+
+        with ScrollableContainer(id="pairs"):
+            yield Pair()
+            yield Pair()
+            yield Pair()
     
     # Action method here
     # Should always start with the word "action"
