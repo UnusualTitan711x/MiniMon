@@ -1,0 +1,3 @@
+libraries:
+    textual
+    "textual[dev]"
