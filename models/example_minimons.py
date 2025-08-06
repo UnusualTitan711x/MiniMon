@@ -1,5 +1,5 @@
-from minimon import MiniMon
-from moves import Move
+from models.minimon import MiniMon
+from models.moves import Move
 
 # Example Move instances
 TACKLE = Move(
