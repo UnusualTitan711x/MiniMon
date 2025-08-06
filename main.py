@@ -1,4 +1,4 @@
-from game import MiniMonGame
+from app import MiniMonGame
 
 if __name__ == "__main__":
     MiniMonGame().run()
