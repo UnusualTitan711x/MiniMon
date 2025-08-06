@@ -15,23 +15,22 @@ class Pair(Static):
         yield Button("Button 2", variant="error")
         yield Word("00:00:00.00")
 
-class BattleScreen(Screen):
+class BattleScreen(Container):
     """ Here stays the options and descriptions of stuff """
 
     def compose(self):
-        yield Container(
-            Static("Descriptions here: What should ... do?", id="prompt"),
+            yield Static("Descriptions here: What should ... do?", id="prompt")
 
-            Grid(
+            yield Grid(
                 Button("FIGHT"),
                 Button("BAG"),
                 Button("MINIMON"),
                 Button("RUN"),
                 id="move-grid"
-            ),
+            )
             
-            id="battle-panel"
-        )         
+            #id="battle-panel"
+
             
 
 class EndRunGame(App):
@@ -44,14 +43,16 @@ class EndRunGame(App):
     def compose(self):
         """ The widgets that this app is composed of """
         
+        #self.push_screen(BattleScreen())
+        
         yield Header(show_clock=True)
         yield Footer()
 
-        self.push_screen(BattleScreen())
-        # with ScrollableContainer(id="pairs"):
-        #     yield Pair()
-        #     yield Pair()
-        #     yield Pair()
+        yield BattleScreen()
+        with ScrollableContainer(id="pairs"):
+            yield Pair()
+            yield Pair()
+            yield Pair()
 
     
     # Action method here
