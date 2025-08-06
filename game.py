@@ -33,7 +33,7 @@ class BattleScreen(Container):
 
             
 
-class EndRunGame(App):
+class MiniMonGame(App):
     BINDINGS = [
         ("d", "toggle_dark_mode", "Toggle dark mode"),
     ]
@@ -43,16 +43,14 @@ class EndRunGame(App):
     def compose(self):
         """ The widgets that this app is composed of """
         
-        #self.push_screen(BattleScreen())
-        
         yield Header(show_clock=True)
         yield Footer()
 
         yield BattleScreen()
-        with ScrollableContainer(id="pairs"):
-            yield Pair()
-            yield Pair()
-            yield Pair()
+        # with ScrollableContainer(id="pairs"):
+        #     yield Pair()
+        #     yield Pair()
+        #     yield Pair()
 
     
     # Action method here
@@ -60,7 +58,3 @@ class EndRunGame(App):
     def action_toggle_dark_mode(self):
         self.theme = ("textual-light" if self.theme == "textual-dark" else "textual-dark")
     
-
-
-if __name__ == "__main__":
-    EndRunGame().run()
