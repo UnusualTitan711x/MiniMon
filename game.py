@@ -15,21 +15,34 @@ class Pair(Static):
         yield Button("Button 2", variant="error")
         yield Word("00:00:00.00")
 
-class BattleScreen(Container):
+class TitleScreen(Screen):
+    """ Title Screen for the MiniMon Game """
+
+    def compose(self):
+        yield Static("Welcome to MiniMon")
+        yield Static("Press START to play")
+        yield Button("Start", variant="success", id="start-button")
+
+class BattleScreen(Screen):
     """ Here stays the options and descriptions of stuff """
 
     def compose(self):
-            yield Static("Descriptions here: What should ... do?", id="prompt")
+            yield Header(show_clock=True)
+            yield Footer()
 
-            yield Grid(
-                Button("FIGHT"),
-                Button("BAG"),
-                Button("MINIMON"),
-                Button("RUN"),
-                id="move-grid"
-            )
+            yield Container(
+                Static("Descriptions here: What should ... do?", id="prompt"),
+
+                Grid(
+                    Button("FIGHT"),
+                    Button("BAG"),
+                    Button("MINIMON"),
+                    Button("RUN"),
+                    id="move-grid"
+                ),
             
-            #id="battle-panel"
+                id="battle-panel"
+            )
 
             
 
@@ -40,17 +53,23 @@ class MiniMonGame(App):
     
     CSS_PATH = "style.css"
     
-    def compose(self):
-        """ The widgets that this app is composed of """
+    # def compose(self):
+    #     """ The widgets that this app is composed of """
         
-        yield Header(show_clock=True)
-        yield Footer()
+    #     yield Header(show_clock=True)
+    #     yield Footer()
 
-        yield BattleScreen()
-        # with ScrollableContainer(id="pairs"):
-        #     yield Pair()
-        #     yield Pair()
-        #     yield Pair()
+    #     yield BattleScreen()
+    #     # with ScrollableContainer(id="pairs"):
+    #     #     yield Pair()
+    #     #     yield Pair()
+    #     #     yield Pair()
+
+    def on_mount(self):
+        self.install_screen(TitleScreen(), name="title")
+        self.install_screen(BattleScreen(), name="battle")
+
+        self.push_screen("battle")
 
     
     # Action method here
