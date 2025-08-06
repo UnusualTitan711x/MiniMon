@@ -1,12 +1,12 @@
 class MiniMon:
-    def __init__(self, name, level, maxHp, attack, defense):
+    def __init__(self, name: str, level: int, maxHp: int, attack: int, defense: int, moves=None):
         self.name = name
         self.level = level
         self.max_hp = maxHp
         self.current_hp = maxHp
-        self.attack = attack
+        self.attack = attack if attack is not None else 5
         self.defense = defense
-        self.moves = []
+        self.moves = moves if moves is not None else []
         self.status = None # for paralyzed or collapsed etc
     
     def take_damage(self, damage):
@@ -14,11 +14,13 @@ class MiniMon:
         self.current_hp -= effective_damage
         if self.current_hp < 0:
             self.current_hp = 0
-        return effective_damage
+    
+    def is_fainted(self) -> bool:
+        return self.current_hp <= 0
     
     def use_move(self, move, target):
         if move in self.moves:
-            damage = move.power + self.attack - target.defense
+            damage = max(1, move.power + self.attack - target.defense)
             target.take_damage(damage)
             return damage
         else:
