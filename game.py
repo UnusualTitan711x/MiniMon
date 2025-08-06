@@ -3,48 +3,13 @@ from textual.containers import ScrollableContainer
 from textual.widgets import Button, Header, Footer, Static
 from textual.screen import Screen
 from textual.containers import Vertical, Horizontal, Grid, Container
+from screens.title_screen import TitleScreen
+from screens.battle_screen import BattleScreen
 
-class Word(Static):
-    """ Just a word """
-
-class Pair(Static):
-    """ Just something here """
-    
-    def compose(self):
-        yield Button("Button 1", variant="success")
-        yield Button("Button 2", variant="error")
-        yield Word("00:00:00.00")
-
-class TitleScreen(Screen):
-    """ Title Screen for the MiniMon Game """
-
-    def compose(self):
-        yield Static("Welcome to MiniMon")
-        yield Static("Press START to play")
-        yield Button("Start", variant="success", id="start-button")
-
-class BattleScreen(Screen):
-    """ Here stays the options and descriptions of stuff """
-
-    def compose(self):
-            yield Header(show_clock=True)
-            yield Footer()
-
-            yield Container(
-                Static("Descriptions here: What should ... do?", id="prompt"),
-
-                Grid(
-                    Button("FIGHT"),
-                    Button("BAG"),
-                    Button("MINIMON"),
-                    Button("RUN"),
-                    id="move-grid"
-                ),
-            
-                id="battle-panel"
-            )
-
-            
+# To switch easily between screens
+# self.app.push_screen("screen_name") or
+# self.app.switch_screen("screen_name")
+        
 
 class MiniMonGame(App):
     BINDINGS = [
@@ -53,23 +18,17 @@ class MiniMonGame(App):
     
     CSS_PATH = "style.css"
     
-    # def compose(self):
-    #     """ The widgets that this app is composed of """
+    def compose(self):
+        """ The widgets that this app is composed of """
         
-    #     yield Header(show_clock=True)
-    #     yield Footer()
-
-    #     yield BattleScreen()
-    #     # with ScrollableContainer(id="pairs"):
-    #     #     yield Pair()
-    #     #     yield Pair()
-    #     #     yield Pair()
+        yield Header(show_clock=True)
+        yield Footer()
 
     def on_mount(self):
         self.install_screen(TitleScreen(), name="title")
         self.install_screen(BattleScreen(), name="battle")
 
-        self.push_screen("battle")
+        self.push_screen("title")
 
     
     # Action method here

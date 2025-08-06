@@ -2,7 +2,7 @@ Pair {
     layout: horizontal;
 }
 
-#battle-panel {
+BattlePanel {
     align: center middle;
     dock: bottom;
     background: $boost;
