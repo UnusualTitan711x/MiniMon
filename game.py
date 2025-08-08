@@ -8,12 +8,12 @@ class Game:
         self.player = Player(
             name="Player1",
             minimons=[BUBBLE, FLAMO, GROG],
-            active_minimon=BUBBLE
+            active_minimon=self.player.minimons[0]
         )
         self.opponent = Player(
             name="Opponent",
             minimons=[FLAMO, GROG],
-            active_minimon=FLAMO
+            active_minimon=self.player.minimons[0]
         )
 
         self.turn = "player"

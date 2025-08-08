@@ -1,7 +1,6 @@
 class MiniMon:
-    def __init__(self, name: str, level: int, maxHp: int, attack: int, defense: int, moves=None):
+    def __init__(self, name: str, maxHp: int, attack: int, defense: int, moves=None):
         self.name = name
-        self.level = level
         self.max_hp = maxHp
         self.current_hp = maxHp
         self.attack = attack if attack is not None else 5

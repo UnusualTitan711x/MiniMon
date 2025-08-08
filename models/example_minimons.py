@@ -29,7 +29,6 @@ WATER_GUN = Move(
 # Example MiniMon instances -----------------------------------
 BUBBLE = MiniMon(
     name="Bubble",
-    level=3,
     maxHp=20,
     attack=3,
     defense=2,
@@ -38,7 +37,6 @@ BUBBLE = MiniMon(
 
 FLAMO = MiniMon(
     name="Flamo",
-    level=5,
     maxHp=22,
     attack=4,
     defense=2,
@@ -47,7 +45,6 @@ FLAMO = MiniMon(
 
 GROG = MiniMon(
     name="Grog",
-    level=4,
     maxHp=20,
     attack=2,
     defense=3,
