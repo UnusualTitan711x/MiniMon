@@ -27,7 +27,6 @@ BattlePanel {
     width: 40%;
     height: auto;
     content-align: center top;
-    
     dock: left;
 }
 
