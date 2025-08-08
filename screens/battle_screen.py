@@ -7,10 +7,9 @@ class BattlePanel(Container):
     """ A container for the battle panel with buttons for actions """
 
     def compose(self):
-        yield Static("Descriptions here: What should ... do?", id="prompt")
+        yield Static("What will you do?", id="prompt")
 
         yield Grid(
-            Button("BITE", id="move-bite"),
             id="move-grid",
             classes="hidden"
         )
@@ -30,38 +29,62 @@ class BattleScreen(Screen):
 
     def __init__(self):
         super().__init__()
-        self.game = Game()
 
     def compose(self):
         yield Header(show_clock=True)
 
-        yield Static("hello", id="battle-log")
+        yield Static("", id="battle-log")
         yield BattlePanel()
 
-        yield Footer()
+        # footer was here
 
     def on_button_pressed(self, event: Button.Pressed):
         button_id = event.button.id
 
         if button_id == "fight":
-            log_widget = self.query_one("#battle-log", Static)
-            log_widget.update("tatakae")
             self.show_move_buttons()
+        elif button_id.startswith("move-"):
+            move_name = event.button.label
+            result = self.app.game.player_turn(move_name)
+            self.refresh_ui()
+
+            if result != "win":
+                self.app.game.opponent_turn()
+                self.refresh_ui()
     
     def show_move_buttons(self):
-        """ Show the abailable moves you from the active Minimon that youcan choose from """
+        """ Show the abailable moves you from the active Minimon that you can choose from """
 
-        state = self.game.get_state()
+        state = self.app.game.get_state()
         moves = state["player"]["active"].moves
 
         move_grid = self.query_one("#move-grid", Grid)
 
-        for move in moves:
-            move_grid.mount(Button(move.name, id=f"move-{move.name.lower()}"))
+        if not move_grid.children:
+            for move in moves:
+                move_grid.mount(Button(move.name, id=f"move-{move.name.lower()}"))
 
         if move_grid.has_class("hidden"):
             move_grid.remove_class("hidden") 
         
         self.query_one("#fight", Button).disabled = True
+    
+    def refresh_ui(self):
+        state = self.app.game.get_state()
+
+        log_widget = self.query_one("#battle-log", Static)
+        log_widget.update("\n".join(state["log"]))
+
+        self.query_one("#fight", Button).disabled = False
+
+        move_grid = self.query_one("#move-grid", Grid)
+
+        if not move_grid.has_class("hidden"):
+            move_grid.add_class("hidden") 
         
+        if self.app.game.result == "win" or self.app.game.result == "lose":
+                self.query_one("#action-grid", Grid).add_class("hidden")
+                self.query_one("#prompt", Static).update(f"You {self.app.game.result}.")
+
+
 

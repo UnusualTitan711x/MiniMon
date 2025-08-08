@@ -19,7 +19,9 @@ class MiniMonGame(App):
     
     CSS_PATH = "style.css"
 
-    game = Game()
+    def __init__(self):
+        super().__init__()
+        self.game = Game()
     
     def compose(self):
         """ The widgets that this app is composed of """

@@ -22,11 +22,11 @@ AVALANCHE = Move(
 
 WATER_GUN = Move(
     name="Water-Gun",
-    power=3,
+    power=5,
     pp=30
 )
 
-# Example MiniMon instances
+# Example MiniMon instances -----------------------------------
 BUBBLE = MiniMon(
     name="Bubble",
     level=3,
