@@ -42,6 +42,7 @@ class BattleScreen(Screen):
         button_id = event.button.id
 
         if button_id == "fight":
+            self.refresh_ui()
             self.show_move_buttons()
         elif button_id.startswith("move-"):
             move_name = event.button.label
@@ -51,6 +52,13 @@ class BattleScreen(Screen):
             if result != "win":
                 self.app.game.opponent_turn()
                 self.refresh_ui()
+        elif button_id == "minimon":
+            self.refresh_ui()
+            self.show_minimon_buttons()
+        elif button_id.startswith("switch-"):
+            index = int(button_id.split("-")[1])
+            # call the switch
+            self.refresh_ui()
     
     def show_move_buttons(self):
         """ Show the abailable moves you from the active Minimon that you can choose from """
@@ -60,22 +68,47 @@ class BattleScreen(Screen):
 
         move_grid = self.query_one("#move-grid", Grid)
 
-        if not move_grid.children:
-            for move in moves:
-                move_grid.mount(Button(move.name, id=f"move-{move.name.lower()}"))
+        move_grid.remove_children()
+        
+        for move in moves:
+            move_grid.mount(Button(move.name, id=f"move-{move.name.lower()}"))
 
         if move_grid.has_class("hidden"):
             move_grid.remove_class("hidden") 
         
         self.query_one("#fight", Button).disabled = True
     
+    def show_minimon_buttons(self):
+        """ Show the abailable moves you from the active Minimon that you can choose from """
+
+        minimons = self.app.game.player.minimons
+
+        move_grid = self.query_one("#move-grid", Grid)
+        move_grid.remove_children()
+        
+        for i, m in enumerate(minimons):
+            move_grid.mount(Button(m.name, id=f"switch-{i}"))
+
+            if self.app.game.player.active_index == i or self.app.game.player.minimons[i].is_fainted():
+                self.query_one(f"#switch-{i}", Button).disabled = False
+
+        if move_grid.has_class("hidden"):
+            move_grid.remove_class("hidden") 
+        
+        self.query_one("#minimon", Button).disabled = True
+
+
     def refresh_ui(self):
         state = self.app.game.get_state()
 
         log_widget = self.query_one("#battle-log", Static)
         log_widget.update("\n".join(state["log"]))
 
+        move_grid = self.query_one("#move-grid", Grid)
+        move_grid.remove_children()
+
         self.query_one("#fight", Button).disabled = False
+        self.query_one("#minimon", Button).disabled = False
 
         move_grid = self.query_one("#move-grid", Grid)
 
