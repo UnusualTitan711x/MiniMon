@@ -11,7 +11,7 @@ BattlePanel {
     padding: 1 1;
 }
 
-#move-grid {
+#action-grid {
     grid-size: 2;
     grid-gutter: 1 1;
     width: 40%;
@@ -21,7 +21,21 @@ BattlePanel {
     dock: right;
 }
 
+#move-grid {
+    grid-size: 2;
+    grid-gutter: 1 1;
+    width: 40%;
+    height: auto;
+    content-align: center top;
+    
+    dock: left;
+}
+
 #prompt{
     dock: left;
     width: 60%;
+}
+
+.hidden{
+    display: none;
 }

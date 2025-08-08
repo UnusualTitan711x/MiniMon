@@ -4,25 +4,25 @@ from models.moves import Move
 # Example Move instances
 TACKLE = Move(
     name="Tackle",
-    power=40,
+    power=4,
     pp=35
 )
 
 BITE = Move(
     name="Bite",
-    power=60,
+    power=5,
     pp=25
 )
 
 AVALANCHE = Move(
     name="Avalanche",
-    power=80,
+    power=4,
     pp=15
 )
 
 WATER_GUN = Move(
-    name="Water Gun",
-    power=50,
+    name="Water-Gun",
+    power=3,
     pp=30
 )
 
@@ -30,26 +30,26 @@ WATER_GUN = Move(
 BUBBLE = MiniMon(
     name="Bubble",
     level=3,
-    maxHp=100,
-    attack=25,
-    defense=15,
+    maxHp=20,
+    attack=3,
+    defense=2,
     moves=[TACKLE, WATER_GUN]
 )
 
 FLAMO = MiniMon(
     name="Flamo",
     level=5,
-    maxHp=100,
-    attack=30,
-    defense=20,
+    maxHp=22,
+    attack=4,
+    defense=2,
     moves=[TACKLE, BITE]
 )
 
 GROG = MiniMon(
     name="Grog",
     level=4,
-    maxHp=100,
-    attack=35,
-    defense=20,
+    maxHp=20,
+    attack=2,
+    defense=3,
     moves=[TACKLE, AVALANCHE]
 )

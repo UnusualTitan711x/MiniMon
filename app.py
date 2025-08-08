@@ -5,6 +5,7 @@ from textual.screen import Screen
 from textual.containers import Vertical, Horizontal, Grid, Container
 from screens.title_screen import TitleScreen
 from screens.battle_screen import BattleScreen
+from game import Game
 
 # To switch easily between screens
 # self.app.push_screen("screen_name") or
@@ -17,6 +18,8 @@ class MiniMonGame(App):
     ]
     
     CSS_PATH = "style.css"
+
+    game = Game()
     
     def compose(self):
         """ The widgets that this app is composed of """
