@@ -4,25 +4,25 @@ from models.moves import Move
 # Example Move instances
 TACKLE = Move(
     name="Tackle",
-    power=14,
+    power=4,
     pp=35
 )
 
 BITE = Move(
     name="Bite",
-    power=15,
+    power=5,
     pp=25
 )
 
 AVALANCHE = Move(
     name="Avalanche",
-    power=14,
+    power=4,
     pp=15
 )
 
 WATER_GUN = Move(
     name="Water-Gun",
-    power=15,
+    power=5,
     pp=30
 )
 
