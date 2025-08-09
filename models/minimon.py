@@ -10,7 +10,7 @@ class MiniMon:
         self.image = image_text
     
     def take_damage(self, damage):
-        effective_damage = max(0, damage - self.defense)
+        effective_damage = max(0, damage)
         self.current_hp -= effective_damage
         if self.current_hp < 0:
             self.current_hp = 0
