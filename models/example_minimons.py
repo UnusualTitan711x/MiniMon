@@ -32,7 +32,13 @@ BUBBLE = MiniMon(
     maxHp=20,
     attack=3,
     defense=2,
-    moves=[TACKLE, WATER_GUN]
+    moves=[TACKLE, WATER_GUN],
+    image_text=""" 
+  (\_/)
+  (o o)
+  /   \\
+ (  v  )
+  ^^ ^^"""
 )
 
 FLAMO = MiniMon(
@@ -40,7 +46,11 @@ FLAMO = MiniMon(
     maxHp=22,
     attack=4,
     defense=2,
-    moves=[TACKLE, BITE]
+    moves=[TACKLE, BITE],
+    image_text="""
+   /\_/\\
+  ( o.o )
+   > ^ <"""
 )
 
 GROG = MiniMon(
@@ -48,7 +58,15 @@ GROG = MiniMon(
     maxHp=20,
     attack=2,
     defense=3,
-    moves=[TACKLE, AVALANCHE]
+    moves=[TACKLE, AVALANCHE],
+    image_text="""   
+  ____
+ (    )
+(  o o )
+/   V   \\
+\  ---  /
+ \_____/
+"""
 )
 
 MITE = MiniMon(
@@ -56,5 +74,11 @@ MITE = MiniMon(
     maxHp=20,
     attack=2,
     defense=3,
-    moves=[TACKLE, AVALANCHE, BITE]
+    moves=[TACKLE, AVALANCHE, BITE],
+    image_text="""
+  ( 'o' )
+  (  -  )
+  (  U  )
+   "" "" 
+"""
 )

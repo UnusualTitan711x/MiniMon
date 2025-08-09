@@ -1,5 +1,5 @@
 class MiniMon:
-    def __init__(self, name: str, maxHp: int, attack: int, defense: int, moves=None):
+    def __init__(self, name: str, maxHp: int, attack: int, defense: int, image_text:str=None, moves=None):
         self.name = name
         self.max_hp = maxHp
         self.current_hp = maxHp
@@ -7,6 +7,7 @@ class MiniMon:
         self.defense = defense
         self.moves = moves if moves is not None else []
         self.status = "Alive" if not self.is_fainted() else "Fainted" # for paralyzed or collapsed etc
+        self.image = image_text
     
     def take_damage(self, damage):
         effective_damage = max(0, damage - self.defense)
