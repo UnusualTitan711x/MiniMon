@@ -6,7 +6,7 @@ class MiniMon:
         self.attack = attack if attack is not None else 5
         self.defense = defense
         self.moves = moves if moves is not None else []
-        self.status = None # for paralyzed or collapsed etc
+        self.status = "Alive" if not self.is_fainted() else "Fainted" # for paralyzed or collapsed etc
     
     def take_damage(self, damage):
         effective_damage = max(0, damage - self.defense)

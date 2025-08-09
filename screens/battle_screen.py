@@ -1,6 +1,8 @@
-from textual.widgets import Button, Header, Footer, Static
+from textual.widgets import Button, Header, Footer, Static, ProgressBar
 from textual.screen import Screen
-from textual.containers import Grid, Container
+from textual.containers import Grid, Container, Horizontal
+from textual.reactive import reactive
+from models.minimon import MiniMon
 from game import Game
 
 class BattlePanel(Container):
@@ -21,8 +23,37 @@ class BattlePanel(Container):
             #Button("RUN", id="run"),
             id="action-grid"
         )
-
     
+        
+
+class TrainerDisplay(Container):
+    """ The panel that contains the information about the MiniMon """
+
+    def __init__(self, minimon:MiniMon, owner:str=None):
+        super().__init__()
+        self.minimon = minimon
+        self.owner = owner
+    
+    def compose(self):
+        yield Static("", id="name")
+        yield Static("", id="hp")
+        yield Static("", id="status")
+        yield ProgressBar(total=self.minimon.max_hp, show_eta=False, id="hp-bar")
+        yield Static("Image")
+    
+    def on_mount(self, event):
+        self.update_from_minimon()
+    
+    def update_from_minimon(self):
+        if self.owner == "player":
+            self.minimon = self.app.game.player.get_active_minimon()
+        elif self.owner == "opponent":
+            self.minimon = self.app.game.opponent.get_active_minimon()
+        
+        self.get_child_by_id("name").update(self.minimon.name)
+        self.get_child_by_id("status").update(f"Satus: {self.minimon.status}")
+        self.get_child_by_id("hp").update(f"HP: {self.minimon.current_hp}/{self.minimon.max_hp}")
+        self.query_one("#hp-bar").update(progress=self.minimon.current_hp, total=self.minimon.max_hp)
 
 class BattleScreen(Screen):
     """ Here stays the options and descriptions of stuff """
@@ -33,10 +64,15 @@ class BattleScreen(Screen):
     def compose(self):
         yield Header(show_clock=True)
 
-        yield Static("", id="battle-log")
-        yield BattlePanel()
+        yield Horizontal(
+            TrainerDisplay(self.app.game.player.get_active_minimon(), owner="player"),
+            TrainerDisplay(self.app.game.opponent.get_active_minimon(), owner="opponent")
+        )
 
-        # footer was here
+        yield Static("", id="battle-log")
+        
+        yield BattlePanel()
+        
 
     def on_button_pressed(self, event: Button.Pressed):
         button_id = event.button.id
@@ -104,6 +140,9 @@ class BattleScreen(Screen):
     def refresh_ui(self):
         state = self.app.game.get_state()
 
+        self.query(TrainerDisplay)[0].update_from_minimon()
+        self.query(TrainerDisplay)[1].update_from_minimon()
+
         log_widget = self.query_one("#battle-log", Static)
         log_widget.update("\n".join(state["log"]))
 
@@ -112,6 +151,9 @@ class BattleScreen(Screen):
 
         if self.app.game.player.get_active_minimon().is_fainted():
             self.query_one("#fight", Button).disabled = True
+
+            self.query(TrainerDisplay)[0].update_from_minimon()
+            self.query(TrainerDisplay)[1].update_from_minimon()
         else:
             self.query_one("#fight", Button).disabled = False
         self.query_one("#minimon", Button).disabled = False
@@ -119,6 +161,9 @@ class BattleScreen(Screen):
         if self.app.game.opponent.get_active_minimon().is_fainted():
             message = self.app.game.opponent.auto_switch_minimon()
             if message: self.app.game.battle_log.append(message)
+
+            self.query(TrainerDisplay)[0].update_from_minimon()
+            self.query(TrainerDisplay)[1].update_from_minimon()
 
         move_grid = self.query_one("#move-grid", Grid)
 
@@ -128,6 +173,7 @@ class BattleScreen(Screen):
         if self.app.game.result == "win" or self.app.game.result == "lose":
                 self.query_one("#action-grid", Grid).add_class("hidden")
                 self.query_one("#prompt", Static).update(f"You {self.app.game.result}.")
+        
 
 
 
