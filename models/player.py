@@ -12,11 +12,23 @@ class Player:
     def get_active_minimon(self):
         return self.minimons[self.active_index]
 
-    def swap_minimon(self, minimon_name: str):
+    def switch_minimon(self, new_index:int=None):
         """ Swap the current minimon with another one in your list """
-
-        minimon = next(m for m in self.minimons if m.name == minimon_name)
-
-        if minimon and self.active_minimon != minimon:
-            self.active_minimon = minimon
+        self.active_index = new_index
+        return f"{self.name} sent out {self.get_active_minimon().name}"
+    
+    def auto_switch_minimon(self):
+        """ Swap the current minimon with another one in your list """
+        if not self.has_alive_minimons():
+            return None
+        
+        for i, m in enumerate(self.minimons):
+            if not m.is_fainted():
+                self.active_index = i
+        
+        return f"{self.name} sent out {self.get_active_minimon().name}"
+    
+    def has_alive_minimons(self):
+        """ Checks if the player still has MinoMons that are alive """
+        return any(not m.is_fainted() for m in self.minimons)
 

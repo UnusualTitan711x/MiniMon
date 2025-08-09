@@ -57,7 +57,10 @@ class BattleScreen(Screen):
             self.show_minimon_buttons()
         elif button_id.startswith("switch-"):
             index = int(button_id.split("-")[1])
-            # call the switch
+            message = self.app.game.player.switch_minimon(index)
+            if message: self.app.game.battle_log.append(message)
+
+            self.app.game.opponent_turn()
             self.refresh_ui()
     
     def show_move_buttons(self):
@@ -79,7 +82,7 @@ class BattleScreen(Screen):
         self.query_one("#fight", Button).disabled = True
     
     def show_minimon_buttons(self):
-        """ Show the abailable moves you from the active Minimon that you can choose from """
+        """ Show the available moves you from the active Minimon that you can choose from """
 
         minimons = self.app.game.player.minimons
 
@@ -90,7 +93,7 @@ class BattleScreen(Screen):
             move_grid.mount(Button(m.name, id=f"switch-{i}"))
 
             if self.app.game.player.active_index == i or self.app.game.player.minimons[i].is_fainted():
-                self.query_one(f"#switch-{i}", Button).disabled = False
+                self.query_one(f"#switch-{i}", Button).disabled = True
 
         if move_grid.has_class("hidden"):
             move_grid.remove_class("hidden") 
@@ -107,8 +110,15 @@ class BattleScreen(Screen):
         move_grid = self.query_one("#move-grid", Grid)
         move_grid.remove_children()
 
-        self.query_one("#fight", Button).disabled = False
+        if self.app.game.player.get_active_minimon().is_fainted():
+            self.query_one("#fight", Button).disabled = True
+        else:
+            self.query_one("#fight", Button).disabled = False
         self.query_one("#minimon", Button).disabled = False
+
+        if self.app.game.opponent.get_active_minimon().is_fainted():
+            message = self.app.game.opponent.auto_switch_minimon()
+            if message: self.app.game.battle_log.append(message)
 
         move_grid = self.query_one("#move-grid", Grid)
 

@@ -1,19 +1,20 @@
 from models.player import Player
 from models.minimon import MiniMon
-from models.example_minimons import BUBBLE, FLAMO, GROG
+from models.example_minimons import BUBBLE, FLAMO, GROG, MITE
 import random
+import copy
 
 class Game:
     def __init__(self):
         self.player = Player(
             name="Player1",
-            minimons=[BUBBLE, FLAMO, GROG],
+            minimons=copy.deepcopy([BUBBLE, FLAMO, GROG, MITE]),
             active_index=0
         )
         self.opponent = Player(
             name="Opponent",
-            minimons=[FLAMO, GROG],
-            active_index=0
+            minimons=copy.deepcopy([FLAMO, GROG]),
+            active_index=1
         )
 
         self.turn = "player"
@@ -21,33 +22,55 @@ class Game:
         self.result = "ND"
     
     def player_turn(self, move_name: str):
+        if self.turn != "player": return
+
         move = next(m for m in self.player.get_active_minimon().moves if m.name == move_name)
 
         if move in self.player.get_active_minimon().moves:
             damage = self.player.get_active_minimon().use_move(move, self.opponent.get_active_minimon())
-            self.battle_log.append(f"{self.player.get_active_minimon().name} used {move.name} for {damage} damage.")
+            self.battle_log.append(f"Your {self.player.get_active_minimon().name} used {move.name} for {damage} damage.")
 
         if self.opponent.get_active_minimon().is_fainted():
-            self.battle_log.append(f"{self.opponent.get_active_minimon().name} has fainted! {self.player.name} wins!")
-            self.result = "win"
-            return "win"
+            self.battle_log.append(f"{self.opponent.name}'s {self.opponent.get_active_minimon().name} has fainted!")
 
+            message = self.opponent.auto_switch_minimon()
+            if message: self.battle_log.append(message)
+            self.check_battle_end()
+        
         self.turn = "opponent"
-        return "ok"
+
+        if self.result == "win":
+            return "win"
+        else:
+            return None
     
     def opponent_turn(self):
+        if self.turn != "opponent": return
+
         move = random.choice(self.opponent.get_active_minimon().moves)
         damage = self.opponent.get_active_minimon().use_move(move, self.player.get_active_minimon())
-        self.battle_log.append(f"{self.opponent.name} used {move.name} causing {damage} damage.")
+        self.battle_log.append(f"{self.opponent.name}'s {self.opponent.get_active_minimon().name} used {move.name} causing {damage} damage.")
 
         if self.player.get_active_minimon().is_fainted():
-            self.battle_log.append(f"{self.player.get_active_minimon().name} has fainted! {self.opponent.name} wins!")
-            self.result = "lose"
-            return "lose"
+            self.battle_log.append(f"{self.player.name}'s {self.player.get_active_minimon().name} has fainted!")
         
         self.turn = "player"
-        return "ok"
+        self.check_battle_end()
     
+    def check_battle_end(self):
+        if not self.player.has_alive_minimons():
+            self.battle_log.append(f"{self.player.name} has no more MiniMons.")
+            self.battle_log.append("You lose!")
+            self.result = "lose"
+            return True
+        elif not self.opponent.has_alive_minimons():
+            self.battle_log.append(f"{self.opponent.name} has no more MiniMons.")
+            self.battle_log.append("You win!")
+            self.result = "win"
+            return True
+        return False
+
+
     def get_state(self):
         return{
             "turn": self.turn,
