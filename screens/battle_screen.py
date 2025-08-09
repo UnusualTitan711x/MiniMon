@@ -1,6 +1,7 @@
 from textual.widgets import Button, Header, Footer, Static, ProgressBar
+from textual import work
 from textual.screen import Screen
-from textual.containers import Grid, Container, Horizontal, ScrollableContainer
+from textual.containers import Grid, Container, Horizontal, ScrollableContainer, VerticalScroll
 from textual.reactive import reactive
 from models.minimon import MiniMon
 from game import Game
@@ -81,8 +82,9 @@ class BattleScreen(Screen):
             TrainerDisplay(self.app.game.opponent.get_active_minimon(), owner="opponent", trainer_name=self.app.game.opponent.name)
         )
 
-        yield Static("", id="battle-log")
-        
+        with VerticalScroll(id="battle-log-scroll"):
+            yield Static("", id="battle-log")
+
         yield BattlePanel()
         
 
@@ -149,14 +151,26 @@ class BattleScreen(Screen):
         self.query_one("#minimon", Button).disabled = True
 
 
-    def refresh_ui(self):
+    def update_log(self):
         state = self.app.game.get_state()
+        
+        log_widget = self.query_one("#battle-log", Static)
+
+        log_widget.update("\n".join(state["log"]))
+        log_widget.call_after_refresh(self.scroll_to_bottom)
+
+    def scroll_to_bottom(self):
+        s_container = self.query_one("#battle-log-scroll", VerticalScroll)
+        s_container.scroll_end(animate=False)
+        
+
+    def refresh_ui(self):
+        
 
         self.query(TrainerDisplay)[0].update_from_minimon()
         self.query(TrainerDisplay)[1].update_from_minimon()
 
-        log_widget = self.query_one("#battle-log", Static)
-        log_widget.update("\n".join(state["log"]))
+        self.update_log()
 
         move_grid = self.query_one("#move-grid", Grid)
         move_grid.remove_children()

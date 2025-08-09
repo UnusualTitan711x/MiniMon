@@ -30,6 +30,11 @@ BattlePanel {
     dock: left;
 }
 
+#battle-log-scroll {
+    height: 5;
+    content-align: center bottom;
+}
+
 #prompt{
     dock: left;
     width: 60%;
