@@ -12,8 +12,9 @@ class MiniMon:
     def take_damage(self, damage):
         effective_damage = max(0, damage)
         self.current_hp -= effective_damage
-        if self.current_hp < 0:
+        if self.current_hp <= 0:
             self.current_hp = 0
+            self.status = "Fainted"
     
     def is_fainted(self) -> bool:
         return self.current_hp <= 0
