@@ -61,20 +61,18 @@ Follow the in-terminal instructions to start battling your MiniMons!
 
 * Choose your MiniMon team of 4 creatures
 * Use moves strategically to defeat your opponent’s MiniMons
-* Watch your MiniMons’ HP and PP carefully to avoid fainting
-* Restart the game anytime after battle ends by pressing the restart key
+* Watch your MiniMons’ HP carefully to avoid fainting
 
 ## Project Structure
 
 * `main.py` — entry point of the game
+* `app.py` — main app logic
+* `game.py` — contains the main game logic
 * `minimon.py` — MiniMon class and related logic
 * `move.py` — Move class and definitions
-* `data/` — YAML or JSON data files for MiniMons and moves
+* `data/` — JSON data files for MiniMons and moves
 * `screens/` — Textual UI screen classes
 
-## Contributing
-
-Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ## License
 
