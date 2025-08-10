@@ -43,13 +43,7 @@ class TrainerDisplay(Container):
         yield Static("", id="hp")
         yield Static("", id="status")
         yield ProgressBar(total=self.minimon.max_hp, show_eta=False, show_percentage=False, id="hp-bar")
-        ascii_art = """
- (\_/)
- (o o)
- /   \\
-(  v  )
- ^^ ^^
-        """
+        ascii_art = "ascii art comes here"
         yield Static(ascii_art, id="image")
     
     def on_mount(self, event):
