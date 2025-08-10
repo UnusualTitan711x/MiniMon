@@ -5,36 +5,36 @@ from models.moves import Move
 TACKLE = Move(
     name="Tackle",
     power=4,
-    pp=35
+    pp=5
 )
 
 BITE = Move(
     name="Bite",
     power=5,
-    pp=25
+    pp=5
 )
 
 AVALANCHE = Move(
     name="Avalanche",
     power=4,
-    pp=15
+    pp=2
 )
 
 WATER_GUN = Move(
     name="Water-Gun",
     power=5,
-    pp=30
+    pp=4
 )
 
 # Example MiniMon instances -----------------------------------
 BUBBLE = MiniMon(
     name="Bubble",
-    maxHp=20,
+    max_hp=20,
     attack=3,
     defense=2,
     moves=[TACKLE, WATER_GUN],
     image_text=""" 
-  (\_/)
+  (\\_/)
   (o o)
   /   \\
  (  v  )
@@ -43,35 +43,34 @@ BUBBLE = MiniMon(
 
 FLAMO = MiniMon(
     name="Flamo",
-    maxHp=22,
+    max_hp=22,
     attack=4,
     defense=2,
     moves=[TACKLE, BITE],
     image_text="""
-   /\_/\\
-  ( o.o )
-   > ^ <"""
+  /\\_/\\
+ ( o.o )
+  > ^ <"""
 )
 
 GROG = MiniMon(
     name="Grog",
-    maxHp=20,
+    max_hp=20,
     attack=2,
     defense=3,
     moves=[TACKLE, AVALANCHE],
-    image_text="""   
-  ____
- (    )
-(  o o )
-/   V   \\
-\  ---  /
- \_____/
-"""
+    image_text="""
+   ____
+  (    )
+ (  o o )
+ /   V   \\
+ \\  ---  /
+  \\_____/"""
 )
 
 MITE = MiniMon(
     name="Mite",
-    maxHp=20,
+    max_hp=20,
     attack=2,
     defense=3,
     moves=[TACKLE, AVALANCHE, BITE],
@@ -82,3 +81,5 @@ MITE = MiniMon(
    "" "" 
 """
 )
+
+ex_minimons = [BUBBLE, MITE, GROG, FLAMO]

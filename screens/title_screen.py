@@ -17,4 +17,4 @@ class TitleScreen(Screen):
 
     def on_button_pressed(self, event):
         if event.button.id == "start-button":
-            self.app.push_screen("battle")
+            self.app.push_screen("select")

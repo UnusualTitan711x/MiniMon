@@ -11,8 +11,10 @@ BattlePanel {
     padding: 1 1;
 }
 
-TitleScreen {
+TitleScreen, SelectionScreen {
     align: center middle;
+    content-align: center middle;
+    width: 100%;
 }
 
 #welcome-message {
@@ -26,6 +28,16 @@ TitleScreen {
     align: center middle;
     text-align: center;
     width: 100%;
+}
+
+#name-input {
+    align: center middle;
+    text-align: center;
+    width: 40%;
+}
+
+#submit {
+    width: 3;
 }
 
 #start-button {

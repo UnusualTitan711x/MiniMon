@@ -5,6 +5,7 @@ from textual.screen import Screen
 from textual.containers import Vertical, Horizontal, Grid, Container
 from screens.title_screen import TitleScreen
 from screens.battle_screen import BattleScreen
+from screens.selection_screen import SelectionScreen
 from game import Game
 
 # To switch easily between screens
@@ -32,6 +33,7 @@ class MiniMonGame(App):
     def on_mount(self):
         self.install_screen(TitleScreen(), name="title")
         self.install_screen(BattleScreen(), name="battle")
+        self.install_screen(SelectionScreen(), name="select")
 
         self.push_screen("title")
 
