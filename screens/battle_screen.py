@@ -6,7 +6,7 @@ from textual.reactive import reactive
 from models.minimon import MiniMon
 from game import Game
 import time
-
+import random
 class BattlePanel(Container):
     """ A container for the battle panel with buttons for actions """
 
@@ -104,9 +104,23 @@ class BattleScreen(Screen):
             message = self.app.game.player.switch_minimon(index)
             if message: self.app.game.battle_log.append(message)
 
+            if random.randint(0,1) == 0:
+                self.app.game.turn = "player"
             self.app.game.opponent_turn()
             self.refresh_ui()
-    
+        elif button_id == "bag":
+            self.refresh_ui()
+            self.show_bag_buttons()
+        elif button_id.startswith("use-"):
+            index = int(button_id.split("-")[1])
+            self.app.game.player.items[index].use(self.app.game.player.get_active_minimon())
+            self.app.game.battle_log.append(f"{self.app.game.player.name} used {self.app.game.player.items[index].name} on {self.app.game.player.get_active_minimon().name}")
+            del self.app.game.player.items[index]
+            
+            self.app.game.turn = "opponent"
+            self.app.game.opponent_turn()
+            self.refresh_ui()
+
     def show_move_buttons(self):
         """ Show the abailable moves you from the active Minimon that you can choose from """
 
@@ -144,6 +158,26 @@ class BattleScreen(Screen):
         
         self.query_one("#minimon", Button).disabled = True
 
+    def show_bag_buttons(self):
+        """ Show the available moves you from the active Minimon that you can choose from """
+
+        items = self.app.game.player.items
+
+        move_grid = self.query_one("#move-grid", Grid)
+        move_grid.remove_children()
+
+        if items == []:
+            self.query_one("#prompt").update("No item left")
+            self.query_one("#bag", Button).disabled = True
+            return
+        
+        for i, m in enumerate(items):
+            move_grid.mount(Button(m.name, id=f"use-{i}"))
+
+        if move_grid.has_class("hidden"):
+            move_grid.remove_class("hidden") 
+        
+        self.query_one("#bag", Button).disabled = True
 
     def update_log(self):
         state = self.app.game.get_state()
@@ -177,6 +211,7 @@ class BattleScreen(Screen):
         else:
             self.query_one("#fight", Button).disabled = False
         self.query_one("#minimon", Button).disabled = False
+        self.query_one("#bag", Button).disabled = False
 
         if self.app.game.opponent.get_active_minimon().is_fainted():
             message = self.app.game.opponent.auto_switch_minimon()

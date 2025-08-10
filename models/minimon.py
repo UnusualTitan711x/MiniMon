@@ -18,6 +18,9 @@ class MiniMon:
     
     def heal(self, heal_amount):
         self.current_hp = max(self.current_hp + heal_amount, self.max_hp)
+    
+    def boost(self, boost_amount):
+        self.attack += boost_amount
 
     
     def is_fainted(self) -> bool:
