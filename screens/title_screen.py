@@ -1,13 +1,17 @@
 from textual.screen import Screen
-from textual.widgets import Button, Static, Header, Footer
+from textual.widgets import Button, Static, Header, Footer, Label
+from textual.containers import Center
 
 class TitleScreen(Screen):
     """ Title Screen for the MiniMon Game """
+    
 
     def compose(self):
-        yield Static("Welcome to MiniMon")
-        yield Static("Press START to play")
-        yield Button("Start", variant="success", id="start-button")
+        yield Label("Welcome to MiniMon", id="welcome-message")
+        yield Static("Press START to play", id="start-instruction")
+
+        with Center():
+            yield Button("Start", variant="success", id="start-button")
 
         yield Footer()
 

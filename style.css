@@ -11,6 +11,27 @@ BattlePanel {
     padding: 1 1;
 }
 
+TitleScreen {
+    align: center middle;
+}
+
+#welcome-message {
+    text-style: bold;
+    align: center middle;
+    text-align: center;
+    width: 100%;
+}
+
+#start-instruction {
+    align: center middle;
+    text-align: center;
+    width: 100%;
+}
+
+#start-button {
+    margin: 1 1;
+}
+
 #action-grid {
     grid-size: 2;
     grid-gutter: 1 1;
