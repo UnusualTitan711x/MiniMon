@@ -2,13 +2,13 @@
   "moves": [
     {"name": "Scratch", "power": 6, "pp": 35},
     {"name": "Ember", "power": 10, "pp": 25},
-    {"name": "Water Splash", "power": 8, "pp": 30},
-    {"name": "Vine Whip", "power": 9, "pp": 25},
-    {"name": "Thunder Jolt", "power": 11, "pp": 20},
-    {"name": "Rock Throw", "power": 10, "pp": 25},
+    {"name": "Water-Splash", "power": 8, "pp": 30},
+    {"name": "Vine-Whip", "power": 9, "pp": 25},
+    {"name": "Thunder-Jolt", "power": 11, "pp": 20},
+    {"name": "Rock-Throw", "power": 10, "pp": 25},
     {"name": "Gust", "power": 8, "pp": 30},
-    {"name": "Shadow Bite", "power": 12, "pp": 20},
-    {"name": "Ice Shard", "power": 10, "pp": 25},
+    {"name": "Shadow-Bite", "power": 12, "pp": 20},
+    {"name": "Ice-Shard", "power": 10, "pp": 25},
     {"name": "Tackle", "power": 6, "pp": 17},
     {"name": "Bite", "power": 10, "pp": 25},
     {"name": "Avalanche", "power": 13, "pp": 10}
@@ -50,32 +50,32 @@
   "minimons": [
     {
       "name": "Bubble",
-      "max_hp": 20,
-      "attack": 3,
-      "defense": 2,
-      "moves": ["Tackle", "Water Splash"],
+      "max_hp": 35,
+      "attack": 7,
+      "defense": 5,
+      "moves": ["Tackle", "Water-Splash"],
       "image_text": "  (\\_/)\n  (o o)\n  /   \\\n (  v  )\n  ^^ ^^"
     },
     {
       "name": "Flamo",
-      "max_hp": 22,
-      "attack": 4,
-      "defense": 2,
+      "max_hp": 42,
+      "attack": 5,
+      "defense": 5,
       "moves": ["Tackle", "Bite"],
       "image_text": "  /\\_/\\\n ( o.o )\n  > ^ <"
     },
     {
       "name": "Grog",
-      "max_hp": 20,
-      "attack": 2,
-      "defense": 3,
-      "moves": ["Tackle", "Avalanche"],
+      "max_hp": 43,
+      "attack": 6,
+      "defense": 7,
+      "moves": ["Tackle", "Avalanche", "Rock-Throw"],
       "image_text": "   ____\n  (    )\n (  o o )\n /   V   \\\n \\  ---  /\n  \\_____/"
     },
     {
       "name": "Mite",
-      "max_hp": 20,
-      "attack": 2,
+      "max_hp": 36,
+      "attack": 7,
       "defense": 3,
       "moves": ["Tackle", "Avalanche", "Bite"],
       "image_text": "  ( 'o' )\n  (  -  )\n  (  U  )\n   \"\" \"\""
@@ -94,7 +94,7 @@
       "attack": 6,
       "defense": 5,
       "image_text": "/^ ^\\\n( O_O )\n/  ~W~ \\\n\\  ___  /\n ^^   ^^",
-      "moves": ["Water Splash", "Scratch"]
+      "moves": ["Water-Splash", "Gust"]
     },
     {
       "name": "Leaflet",
@@ -102,7 +102,7 @@
       "attack": 7,
       "defense": 6,
       "image_text": "(\\__/)\n( O_O )\n/  $  \\\n\\  ~~~ /\n ^^ ^^",
-      "moves": ["Vine Whip", "Scratch"]
+      "moves": ["Vine-Whip", "Gust"]
     },
     {
       "name": "Voltkit",
@@ -110,7 +110,7 @@
       "attack": 9,
       "defense": 4,
       "image_text": "/\\_/\\ \n( 1_1)\n/  1 1  \\\n\\  ||  /\n ^^  ^^",
-      "moves": ["Thunder Jolt", "Scratch"]
+      "moves": ["Thunder-Jolt", "Scratch"]
     },
     {
       "name": "Pebbleon",
@@ -118,7 +118,7 @@
       "attack": 6,
       "defense": 8,
       "image_text": "[ o_o ]\n/  d  P \\\n\\  __  /\n ^^  ^^",
-      "moves": ["Rock Throw", "Scratch"]
+      "moves": ["Rock-Throw", "Scratch"]
     },
     {
       "name": "Breezear",
@@ -134,7 +134,7 @@
       "attack": 10,
       "defense": 4,
       "image_text": "/\\_/\\ \n( o_o)\n/  W  \\\n\\  ~  /\n ^^ ^^",
-      "moves": ["Shadow Bite", "Scratch"]
+      "moves": ["Shadow-Bite", "Scratch"]
     },
     {
       "name": "Frostbun",
@@ -142,7 +142,7 @@
       "attack": 7,
       "defense": 5,
       "image_text": "(\\__/)\n( *_* )\n/   *   \\\n\\  ~   /\n ^^ ^^",
-      "moves": ["Ice Shard", "Scratch"]
+      "moves": ["Ice-Shard", "Scratch"]
     },
     {
       "name": "Helo",
@@ -150,7 +150,7 @@
       "attack": 5,
       "defense": 6,
       "image_text": "(\\__/)\n( ^_^ )\n/  + + \\\n\\  ~  /\n ^^ ^^",
-      "moves": ["Gust", "Scratch"]
+      "moves": ["Gust", "Scratch", "Avalanche"]
     },
     {
       "name": "Wildfang",
@@ -158,7 +158,7 @@
       "attack": 9,
       "defense": 5,
       "image_text": "/^\\/^\\\n( >_< )\n/   ##   \\\n\\  ~   /\n ^^ ^^",
-      "moves": ["Scratch"]
+      "moves": ["Scratch", "Shadow-Bite", "Gust"]
     }
   ]
 }

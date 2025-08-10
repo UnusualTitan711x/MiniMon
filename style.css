@@ -54,6 +54,14 @@ TitleScreen, SelectionScreen {
     dock: right;
 }
 
+#minimon-grid {
+    grid-size: 5;
+    width: 90%;
+    height: auto;
+    content-align: center top;
+    align: center middle;
+}
+
 #move-grid {
     grid-size: 2;
     grid-gutter: 1 1;

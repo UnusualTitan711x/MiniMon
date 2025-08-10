@@ -2,6 +2,7 @@ from models.player import Player
 from models.minimon import MiniMon
 from models.example_minimons import BUBBLE, FLAMO, GROG, MITE
 from models.item import HealthPotion, PowerBoost 
+from utils.data_loader import all_minimons, moves_dict
 import random
 import copy
 
@@ -10,13 +11,13 @@ class Game:
     def __init__(self):
         self.player = Player(
             name="Player1",
-            minimons=copy.deepcopy([BUBBLE, FLAMO, GROG, MITE]),
+            minimons=[],
             active_index=0,
             items=[HealthPotion(5), PowerBoost(10), HealthPotion(10)] 
         )
         self.opponent = Player(
             name="Opponent",
-            minimons=copy.deepcopy([FLAMO, GROG]),
+            minimons=copy.deepcopy([all_minimons[2], all_minimons[5], all_minimons[0], all_minimons[8]]),
             active_index=1
         )
 
