@@ -9,7 +9,6 @@
     {"name": "Gust", "power": 8, "pp": 30},
     {"name": "Shadow Bite", "power": 12, "pp": 20},
     {"name": "Ice Shard", "power": 10, "pp": 25},
-    {"name": "Heal Pulse", "power": 0, "pp": 15},
     {"name": "Tackle", "power": 6, "pp": 17},
     {"name": "Bite", "power": 10, "pp": 25},
     {"name": "Avalanche", "power": 13, "pp": 10}
@@ -146,12 +145,12 @@
       "moves": ["Ice Shard", "Scratch"]
     },
     {
-      "name": "Healo",
+      "name": "Helo",
       "max_hp": 39,
       "attack": 5,
       "defense": 6,
       "image_text": "(\\__/)\n( ^_^ )\n/  + + \\\n\\  ~  /\n ^^ ^^",
-      "moves": ["Heal Pulse", "Scratch"]
+      "moves": ["Gust", "Scratch"]
     },
     {
       "name": "Wildfang",
