@@ -16,6 +16,10 @@ class MiniMon:
             self.current_hp = 0
             self.status = "Fainted"
     
+    def heal(self, heal_amount):
+        self.current_hp = max(self.current_hp + heal_amount, self.max_hp)
+
+    
     def is_fainted(self) -> bool:
         return self.current_hp <= 0
     
