@@ -8,6 +8,8 @@ import copy
 
 
 class Game:
+    n_minimons = len(all_minimons)
+
     def __init__(self):
         self.player = Player(
             name="Player1",
@@ -17,7 +19,7 @@ class Game:
         )
         self.opponent = Player(
             name="Opponent",
-            minimons=copy.deepcopy([all_minimons[2], all_minimons[5], all_minimons[0], all_minimons[8]]),
+            minimons=copy.deepcopy([all_minimons[random.randint(0, self.n_minimons)], all_minimons[random.randint(0, self.n_minimons)], all_minimons[random.randint(0, self.n_minimons)], all_minimons[random.randint(0, self.n_minimons)]]),
             active_index=1
         )
 
