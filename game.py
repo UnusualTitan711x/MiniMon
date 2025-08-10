@@ -19,7 +19,7 @@ class Game:
         )
         self.opponent = Player(
             name="Opponent",
-            minimons=copy.deepcopy([all_minimons[random.randint(0, self.n_minimons)], all_minimons[random.randint(0, self.n_minimons)], all_minimons[random.randint(0, self.n_minimons)], all_minimons[random.randint(0, self.n_minimons)]]),
+            minimons=copy.deepcopy([all_minimons[random.randint(0, self.n_minimons-1)], all_minimons[random.randint(0, self.n_minimons-1)], all_minimons[random.randint(0, self.n_minimons-1)], all_minimons[random.randint(0, self.n_minimons)-1]]),
             active_index=1
         )
 
