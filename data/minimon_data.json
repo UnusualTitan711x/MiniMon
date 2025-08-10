@@ -1,0 +1,165 @@
+{
+  "moves": [
+    {"name": "Scratch", "power": 6, "pp": 35},
+    {"name": "Ember", "power": 10, "pp": 25},
+    {"name": "Water Splash", "power": 8, "pp": 30},
+    {"name": "Vine Whip", "power": 9, "pp": 25},
+    {"name": "Thunder Jolt", "power": 11, "pp": 20},
+    {"name": "Rock Throw", "power": 10, "pp": 25},
+    {"name": "Gust", "power": 8, "pp": 30},
+    {"name": "Shadow Bite", "power": 12, "pp": 20},
+    {"name": "Ice Shard", "power": 10, "pp": 25},
+    {"name": "Heal Pulse", "power": 0, "pp": 15},
+    {"name": "Tackle", "power": 6, "pp": 17},
+    {"name": "Bite", "power": 10, "pp": 25},
+    {"name": "Avalanche", "power": 13, "pp": 10}
+  ],
+  "items": [
+    {
+      "name": "Small Heal Potion",
+      "type": "heal",
+      "heal_amount": 20,
+      "description": "Restores 20 HP."
+    },
+    {
+      "name": "Large Heal Potion",
+      "type": "heal",
+      "heal_amount": 50,
+      "description": "Restores 50 HP."
+    },
+    {
+      "name": "Energy Drink",
+      "type": "pp_restore",
+      "restore_amount": 10,
+      "description": "Restores 10 PP to one move."
+    },
+    {
+      "name": "Max Energy Drink",
+      "type": "pp_restore",
+      "restore_amount": "full",
+      "description": "Fully restores PP of all moves."
+    },
+    {
+      "name": "Attack Tonic",
+      "type": "stat_boost",
+      "stat": "attack",
+      "boost_amount": 5,
+      "duration": "battle",
+      "description": "Temporarily boosts attack by 5 until the battle ends."
+    }
+  ],
+  "minimons": [
+    {
+      "name": "Bubble",
+      "max_hp": 20,
+      "attack": 3,
+      "defense": 2,
+      "moves": ["Tackle", "Water Splash"],
+      "image_text": "  (\\_/)\n  (o o)\n  /   \\\n (  v  )\n  ^^ ^^"
+    },
+    {
+      "name": "Flamo",
+      "max_hp": 22,
+      "attack": 4,
+      "defense": 2,
+      "moves": ["Tackle", "Bite"],
+      "image_text": "  /\\_/\\\n ( o.o )\n  > ^ <"
+    },
+    {
+      "name": "Grog",
+      "max_hp": 20,
+      "attack": 2,
+      "defense": 3,
+      "moves": ["Tackle", "Avalanche"],
+      "image_text": "   ____\n  (    )\n (  o o )\n /   V   \\\n \\  ---  /\n  \\_____/"
+    },
+    {
+      "name": "Mite",
+      "max_hp": 20,
+      "attack": 2,
+      "defense": 3,
+      "moves": ["Tackle", "Avalanche", "Bite"],
+      "image_text": "  ( 'o' )\n  (  -  )\n  (  U  )\n   \"\" \"\""
+    },
+    {
+      "name": "Flameling",
+      "max_hp": 35,
+      "attack": 8,
+      "defense": 4,
+      "image_text": "(\\_/)\n( -_-)\n/   F \\\n\\  |  /\n \\ | /",
+      "moves": ["Ember", "Scratch"]
+    },
+    {
+      "name": "Aquapup",
+      "max_hp": 40,
+      "attack": 6,
+      "defense": 5,
+      "image_text": "/^ ^\\\n( O_O )\n/  ~W~ \\\n\\  ___  /\n ^^   ^^",
+      "moves": ["Water Splash", "Scratch"]
+    },
+    {
+      "name": "Leaflet",
+      "max_hp": 38,
+      "attack": 7,
+      "defense": 6,
+      "image_text": "(\\__/)\n( O_O )\n/  $  \\\n\\  ~~~ /\n ^^ ^^",
+      "moves": ["Vine Whip", "Scratch"]
+    },
+    {
+      "name": "Voltkit",
+      "max_hp": 34,
+      "attack": 9,
+      "defense": 4,
+      "image_text": "/\\_/\\ \n( 1_1)\n/  1 1  \\\n\\  ||  /\n ^^  ^^",
+      "moves": ["Thunder Jolt", "Scratch"]
+    },
+    {
+      "name": "Pebbleon",
+      "max_hp": 42,
+      "attack": 6,
+      "defense": 8,
+      "image_text": "[ o_o ]\n/  d  P \\\n\\  __  /\n ^^  ^^",
+      "moves": ["Rock Throw", "Scratch"]
+    },
+    {
+      "name": "Breezear",
+      "max_hp": 36,
+      "attack": 7,
+      "defense": 5,
+      "image_text": "(\\_~_/)\n( -o- )\n/   ~~  \\\n\\  ~   /\n ^^ ^^",
+      "moves": ["Gust", "Scratch"]
+    },
+    {
+      "name": "Noctail",
+      "max_hp": 33,
+      "attack": 10,
+      "defense": 4,
+      "image_text": "/\\_/\\ \n( o_o)\n/  W  \\\n\\  ~  /\n ^^ ^^",
+      "moves": ["Shadow Bite", "Scratch"]
+    },
+    {
+      "name": "Frostbun",
+      "max_hp": 37,
+      "attack": 7,
+      "defense": 5,
+      "image_text": "(\\__/)\n( *_* )\n/   *   \\\n\\  ~   /\n ^^ ^^",
+      "moves": ["Ice Shard", "Scratch"]
+    },
+    {
+      "name": "Healo",
+      "max_hp": 39,
+      "attack": 5,
+      "defense": 6,
+      "image_text": "(\\__/)\n( ^_^ )\n/  + + \\\n\\  ~  /\n ^^ ^^",
+      "moves": ["Heal Pulse", "Scratch"]
+    },
+    {
+      "name": "Wildfang",
+      "max_hp": 36,
+      "attack": 9,
+      "defense": 5,
+      "image_text": "/^\\/^\\\n( >_< )\n/   ##   \\\n\\  ~   /\n ^^ ^^",
+      "moves": ["Scratch"]
+    }
+  ]
+}
