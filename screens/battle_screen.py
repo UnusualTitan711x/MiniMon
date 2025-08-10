@@ -120,6 +120,8 @@ class BattleScreen(Screen):
             self.app.game.turn = "opponent"
             self.app.game.opponent_turn()
             self.refresh_ui()
+        elif button_id == "close":
+            self.app.exit()
 
     def show_move_buttons(self):
         """ Show the abailable moves you from the active Minimon that you can choose from """
@@ -226,8 +228,10 @@ class BattleScreen(Screen):
             move_grid.add_class("hidden") 
         
         if self.app.game.result == "win" or self.app.game.result == "lose":
-                self.query_one("#action-grid", Grid).add_class("hidden")
+                self.query_one("#action-grid", Grid).remove_children()
+                self.query_one("#action-grid", Grid).mount(Button("Close", id="close"))
                 self.query_one("#prompt", Static).update(f"You {self.app.game.result}.")
+                
         
 
 
