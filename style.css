@@ -22,7 +22,7 @@ TitleScreen {
     width: 100%;
 }
 
-#start-instruction {
+.center {
     align: center middle;
     text-align: center;
     width: 100%;

@@ -7,8 +7,8 @@ class TitleScreen(Screen):
     
 
     def compose(self):
-        yield Label("Welcome to MiniMon", id="welcome-message")
-        yield Static("Press START to play", id="start-instruction")
+        yield Label("Welcome to MiniMon", classes="center")
+        yield Static("Press START to play", classes="center")
 
         with Center():
             yield Button("Start", variant="success", id="start-button")
