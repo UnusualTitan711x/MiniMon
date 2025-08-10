@@ -105,7 +105,7 @@ class BattleScreen(Screen):
             if message: self.app.game.battle_log.append(message)
 
             if random.randint(0,1) == 0:
-                self.app.game.turn = "player"
+                self.app.game.turn = "opponent"
             self.app.game.opponent_turn()
             self.refresh_ui()
         elif button_id == "bag":
