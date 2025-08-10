@@ -18,7 +18,94 @@ class MiniMonGame(App):
         ("d", "toggle_dark_mode", "Toggle dark mode"),
     ]
     
-    CSS_PATH = "style.css"
+    CSS = """
+Pair {
+    layout: horizontal;
+}
+
+BattlePanel {
+    align: center middle;
+    dock: bottom;
+    background: $boost;
+    min-width: 100;
+    height: 30%;
+    padding: 1 1;
+}
+
+TitleScreen, SelectionScreen {
+    align: center middle;
+    content-align: center middle;
+    width: 100%;
+}
+
+#welcome-message {
+    text-style: bold;
+    align: center middle;
+    text-align: center;
+    width: 100%;
+}
+
+.center {
+    align: center middle;
+    text-align: center;
+    width: 100%;
+}
+
+#name-input {
+    align: center middle;
+    text-align: center;
+    width: 40%;
+}
+
+#submit {
+    width: 3;
+}
+
+#start-button {
+    margin: 1 1;
+}
+
+#action-grid {
+    grid-size: 2;
+    grid-gutter: 1 1;
+    width: 40%;
+    height: auto;
+    content-align: center top;
+    
+    dock: right;
+}
+
+#minimon-grid {
+    grid-size: 5;
+    width: 90%;
+    height: auto;
+    content-align: center top;
+    align: center middle;
+}
+
+#move-grid {
+    grid-size: 2;
+    grid-gutter: 1 1;
+    width: 40%;
+    height: auto;
+    content-align: center top;
+    dock: left;
+}
+
+#battle-log-scroll {
+    height: 5;
+    content-align: center bottom;
+}
+
+#prompt{
+    dock: left;
+    width: 60%;
+}
+
+.hidden{
+    display: none;
+}
+"""
 
     def __init__(self):
         super().__init__()
