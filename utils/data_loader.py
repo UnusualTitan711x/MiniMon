@@ -2,9 +2,21 @@ import json
 from models.minimon import MiniMon
 from models.item import Item
 from models.moves import Move
+import sys
+import os
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
 
-with open("data/minimon_data.json") as f:
+    return os.path.join(base_path, relative_path)
+
+json_path = resource_path("data/minimon_data.json")
+
+with open(json_path, encoding="utf-8") as f:
     data = json.load(f)
 
 # Load moves into dictionary
